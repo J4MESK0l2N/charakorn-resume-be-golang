@@ -10,7 +10,7 @@
 - api/v1/organizations [DELETE]
 - api/v1/project [POST]
 
-### จะมีบางเส้นที่ยังไม่ได้เทส เนื่องจากทำ API เส้นที่ใช้งานก่อนให้ทันวันจันทร์
+### จะมีบางเส้นที่ยังไม่ได้เทส เนื่องจากทำ API เส้นที่ใช้งานก่อน
 - Project ถูก Deploy อยู่บน Lambda > API Gateway โดยทำการเก็บ Image Docker ไว้ที่ ECS เพราะ Golang 1.x เลิก Support บน aws deploy จึงต้องใช้ Docker ขึ้นมาในการ Build Image
 
 ## Environments
