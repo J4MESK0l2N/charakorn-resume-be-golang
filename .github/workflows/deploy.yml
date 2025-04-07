@@ -2,7 +2,7 @@ name: Deploy Go Lambda
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -15,7 +15,14 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.22"
+          go-version: "1.19" # Update to Go 1.19 or later
+
+      - name: Install dependencies
+        run: |
+          go mod tidy
+          go get github.com/aws/aws-lambda-go/events
+          go get github.com/aws/aws-lambda-go/lambda
+          go get github.com/awslabs/aws-lambda-go-api-proxy/gin
 
       - name: Install AWS SAM CLI
         run: |
