@@ -1,16 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless Go API powered by API Gateway and Lambda
+
 Resources:
-  GoGinAPI:
+  GoApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      BinaryMediaTypes: ["*/*"]
+
+  GoLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./bin
       Handler: bootstrap
+      MemorySize: 256
       Runtime: go1.x
-      CodeUri: .
+      Timeout: 120
       Events:
-        Api:
+        ProxyApiRoot:
           Type: Api
           Properties:
+            RestApiId: !Ref GoApi
+            Path: /
+            Method: ANY
+        ProxyApiGreedy:
+          Type: Api
+          Properties:
+            RestApiId: !Ref GoApi
             Path: /{proxy+}
             Method: ANY
-      Environment:
-        Variables:
-          ENV: "master"
+
+Outputs:
+  LambdaFunctionConsoleUrl:
+    Description: Console URL for the Lambda Function.
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/lambda/home?region=${AWS::Region}#/functions/${GoLambdaFunction}
+
+  ApiGatewayApiConsoleUrl:
+    Description: Console URL for the API Gateway API's Stage.
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/apigateway/home?region=${AWS::Region}#/apis/${GoApi}/stages/prod
+
+  ApiUrl:
+    Description: Invoke URL for your API. Clicking this link will perform a GET request on the root resource of your API.
+    Value: !Sub https://${GoApi}.execute-api.${AWS::Region}.amazonaws.com/prod/
