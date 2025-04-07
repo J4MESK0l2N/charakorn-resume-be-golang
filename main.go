@@ -4,16 +4,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
-
 	"be-golang/database"
 	"be-golang/routes"
+	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"	
 )
 
 var ginLambda *ginadapter.GinLambda
 
 func init() {
-	database.Init()
+	db.Init()
 
 	r := gin.Default()
 
