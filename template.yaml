@@ -1,0 +1,16 @@
+Resources:
+  GoGinAPI:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bootstrap
+      Runtime: go1.x
+      CodeUri: .
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      Environment:
+        Variables:
+          ENV: "main"
