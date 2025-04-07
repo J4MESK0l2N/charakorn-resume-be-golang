@@ -13,4 +13,4 @@ Resources:
             Method: ANY
       Environment:
         Variables:
-          ENV: "main"
+          ENV: "master"
