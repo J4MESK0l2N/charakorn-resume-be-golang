@@ -12,3 +12,8 @@
 
 ### จะมีบางเส้นที่ยังไม่ได้เทส เนื่องจากทำ API เส้นที่ใช้งานก่อนให้ทันวันจันทร์
 - Project ถูก Deploy อยู่บน Lambda > API Gateway โดยทำการเก็บ Image Docker ไว้ที่ ECS เพราะ Golang 1.x เลิก Support บน aws deploy จึงต้องใช้ Docker ขึ้นมาในการ Build Image
+
+## Environments
+- Golang (gin)
+- DynamoDB
+- Docker
