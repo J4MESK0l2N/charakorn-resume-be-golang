@@ -15,7 +15,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.22" # Update to Go 1.19 or later
+          go-version: "1.18"
 
       - name: Install dependencies
         run: |
